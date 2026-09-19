@@ -1,0 +1,36 @@
+# --- Core API -------------------------------------------------------------
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.8.0
+python-dotenv>=1.0.0
+httpx>=0.27.0
+
+# --- Agent orchestration --------------------------------------------------
+langgraph>=0.2.0
+
+# --- Retrieval ------------------------------------------------------------
+# BM25 is implemented in-tree (app/retrieval/bm25.py) so the sparse arm has no
+# external dependency and its tokenizer can keep percentages and clause numbers.
+# Dense retrieval and the vector index use numpy + scikit-learn; at ~140 chunks
+# an exact cosine scan is a single BLAS call, so no ANN library is required.
+numpy>=1.26.0
+scikit-learn>=1.4.0
+scipy>=1.11.0
+
+# --- Policy ingestion -----------------------------------------------------
+pdfplumber>=0.11.0
+pypdf>=5.0.0
+
+# --- Frontend -------------------------------------------------------------
+streamlit>=1.37.0
+
+# --- Tests ----------------------------------------------------------------
+pytest>=8.0.0
+
+# --- Optional upgrades ----------------------------------------------------
+# Install these to switch on the transformer backends. The system detects them
+# automatically (EMBEDDING_BACKEND=auto / RERANKER_BACKEND=auto) and falls back
+# to the offline implementations when the weights cannot be downloaded.
+#
+#   pip install sentence-transformers>=3.0.0   # BGE embeddings + cross-encoder reranker
+#   pip install faiss-cpu>=1.8.0               # FAISS vector index (numpy is used otherwise)

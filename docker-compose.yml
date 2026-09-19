@@ -1,0 +1,37 @@
+services:
+  api:
+    build: .
+    container_name: aptino-claim-api
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: 8000
+      CORS_ORIGINS: "*"
+      LLM_PROVIDER: "${LLM_PROVIDER:-none}"
+      LLM_MODEL: "${LLM_MODEL:-}"
+      LLM_API_KEY: "${LLM_API_KEY:-}"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=8).status==200 else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+
+  frontend:
+    build: .
+    container_name: aptino-claim-ui
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "8501:8501"
+    environment:
+      # The UI calls the API container over the compose network.
+      API_BASE_URL: "http://api:8000"
+    command: >
+      sh -c "streamlit run frontend/streamlit_app.py
+             --server.port 8501
+             --server.address 0.0.0.0
+             --server.headless true"
+    restart: unless-stopped

@@ -1,0 +1,179 @@
+{
+  "_readme": {
+    "purpose": "Ground truth for the 12 supplied public cases.",
+    "how_expected_outcomes_were_established": [
+      "Each expected decision was derived by hand from the supplied policy wording (UNIHLIP18004V011718) BEFORE the engine was run, by locating the governing clause and applying it to the case facts.",
+      "'clause_basis' names the exact provision and page relied on, so a reviewer can verify the label independently of the engine.",
+      "'required_evidence' lists verbatim fragments of the clauses a correct answer must rest on. Retrieval recall@k and citation correctness are measured against these, not against whatever the system happened to return.",
+      "'expected_deduction_inr' is computed from the policy's own arithmetic; it is null where no monetary cap binds or where the claim is not payable.",
+      "These labels are data for the evaluation harness only. The engine has no access to this file: it derives its decisions from retrieved policy text via the rule engine."
+    ],
+    "distribution": {
+      "ADMISSIBLE": 3,
+      "ADMISSIBLE_WITH_LIMITS": 3,
+      "NOT_ADMISSIBLE": 4,
+      "NEEDS_REVIEW": 2
+    }
+  },
+  "cases": {
+    "PUB-001": {
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "expected_deduction_inr": 10200,
+      "clause_basis": [
+        "Scope of Cover, Sub limits (p.7): normal room expenses capped at 1.0% of Basic Sum Insured per day. 1% of INR 500,000 = INR 5,000/day x 4 days (96 hours) = INR 20,000 against INR 30,000 claimed, so INR 10,000 is deducted.",
+        "Scope of Cover, Cover 4 Additional Benefits (p.8): ambulance limited to 1.0% of Basic Sum Insured or INR 1,000, whichever is less. INR 1,000 against INR 1,200 claimed, so INR 200 is deducted.",
+        "Exclusion 2 (p.9): 14 months of continuous coverage clears the 30-day initial waiting period.",
+        "Appendicitis appears on no exclusion list and on no waiting-period list."
+      ],
+      "required_evidence": [
+        { "must_contain": "Normal Room expenses: 1.0% of Basic Sum Insured", "page": 7 },
+        { "must_contain": "Ambulance charges in connection with any admissible claim limited to", "page": 8 },
+        { "must_contain": "waiting period of 30 days will apply to all claims", "page": 9 }
+      ]
+    },
+    "PUB-002": {
+      "expected_decision": "NOT_ADMISSIBLE",
+      "expected_deduction_inr": null,
+      "clause_basis": [
+        "Exclusion 2, 30 days Waiting Period (p.9): the claim date 2026-01-20 is 19 days after the policy start 2026-01-01.",
+        "Neither exemption applies: continuous_coverage_months is 0 and prior_insurer_continuous_years is 0, so there is no cover in a previous policy year and no year of prior Indian individual health cover."
+      ],
+      "required_evidence": [
+        { "must_contain": "waiting period of 30 days will apply to all claims", "page": 9 }
+      ]
+    },
+    "PUB-003": {
+      "expected_decision": "NOT_ADMISSIBLE",
+      "expected_deduction_inr": null,
+      "clause_basis": [
+        "Exclusion 1, Pre-existing diseases (p.8): not covered until 48 months of continuous coverage have elapsed since inception of the first policy.",
+        "The case declares pre_existing = true with 27 months of continuous coverage and no prior insurer credit, leaving the claim 21 months short."
+      ],
+      "required_evidence": [
+        { "must_contain": "Pre-existing diseases will not be covered until 48 months", "page": 8 }
+      ]
+    },
+    "PUB-004": {
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "expected_deduction_inr": 5000,
+      "clause_basis": [
+        "Definitions, Domiciliary Treatment (p.2): covered where the patient cannot be moved to a hospital OR no hospital room was available. The case records hospital_room_unavailable = true, satisfying the second limb.",
+        "Scope of Cover, NB2 (p.7): domiciliary hospitalisation is paid up to a maximum aggregate sub-limit of 20% of the Basic Sum Insured. 20% of INR 500,000 = INR 100,000 against INR 105,000 claimed (doctor fees 25,000 + medicines 80,000), so INR 5,000 is deducted."
+      ],
+      "required_evidence": [
+        { "must_contain": "Domiciliary Treatment means medical treatment", "page": 2 },
+        { "must_contain": "maximum aggregate sub-limit of 20% of the Basic Sum Insured", "page": 7 }
+      ],
+      "notes": "The policy also excludes domiciliary treatment 'not exceeding three days', but the case supplies no treatment duration. Because the stated task asks for the sub-limit and the duration is not in issue on the supplied facts, the duration is recorded as a non-blocking evidence gap rather than an abstention trigger. See docs/failure-analysis.md F-03."
+    },
+    "PUB-005": {
+      "expected_decision": "ADMISSIBLE",
+      "expected_deduction_inr": 0,
+      "clause_basis": [
+        "Scope of Cover, NB4 (p.7): eye surgery is expressly named among the treatments covered where the stay is under 24 hours, so the 8-hour admission qualifies as day care.",
+        "Exclusion 3 (p.9): cataract carries a first-year waiting period, but 29 months of continuous coverage have elapsed, so it does not bite.",
+        "No category cap binds: doctor fees INR 15,000 against a 25% cap of INR 125,000; medicines INR 45,000 against a 40% cap of INR 200,000."
+      ],
+      "required_evidence": [
+        { "must_contain": "140 Day Care Procedures", "page": 7 },
+        { "must_contain": "first year of operation of the insurance cover", "page": 9 }
+      ]
+    },
+    "PUB-006": {
+      "expected_decision": "NEEDS_REVIEW",
+      "expected_deduction_inr": null,
+      "clause_basis": [
+        "Definitions, Medically Necessary (p.4): payment requires the treatment to be medically necessary. The case explicitly records medical_necessity_confirmed = null, i.e. the question was raised and could not be established.",
+        "The case also records hospital_registered = null and supplies no itemised bill, compounding the evidence gap.",
+        "No safe affirmative or negative conclusion is available, so the correct behaviour is abstention."
+      ],
+      "required_evidence": [
+        { "must_contain": "Medically Necessary means any treatment", "page": 4 },
+        { "must_contain": "Hospital means any institution established for in-patient care", "page": 3 }
+      ],
+      "abstention_case": true
+    },
+    "PUB-007": {
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "expected_deduction_inr": 190500,
+      "clause_basis": [
+        "Sub limits (p.7): room capped at 1% of INR 1,000,000 = INR 10,000/day x 4 days = INR 40,000 against INR 80,000 claimed; INR 40,000 deducted.",
+        "Cover 2 (p.7): practitioner, consultant and surgeon fees capped at 25% of Sum Insured = INR 250,000 against INR 300,000 claimed; INR 50,000 deducted.",
+        "Cover 3 (p.7): medicines, drugs, diagnostics and similar capped at 40% of Sum Insured = INR 400,000 against INR 500,000 claimed; INR 100,000 deducted.",
+        "Cover 4 Additional Benefits (p.8): ambulance capped at the lesser of 1% of Sum Insured and INR 1,000 = INR 1,000 against INR 1,500 claimed; INR 500 deducted.",
+        "Total deduction INR 190,500."
+      ],
+      "required_evidence": [
+        { "must_contain": "Normal Room expenses: 1.0% of Basic Sum Insured", "page": 7 },
+        { "must_contain": "subject to a limit of 25% of Sum Assured", "page": 7 },
+        { "must_contain": "subject to a limit of 40% Sum Insured", "page": 7 },
+        { "must_contain": "Ambulance charges in connection with any admissible claim limited to", "page": 8 }
+      ]
+    },
+    "PUB-008": {
+      "expected_decision": "NOT_ADMISSIBLE",
+      "expected_deduction_inr": null,
+      "clause_basis": [
+        "Exclusion 5 (p.9): 'cosmetic or aesthetic treatment of any description (including any complications arising thereof)' is excluded. The diagnosis and procedure are both recorded as cosmetic."
+      ],
+      "required_evidence": [
+        { "must_contain": "cosmetic or aesthetic treatment of any description", "page": 9 }
+      ]
+    },
+    "PUB-009": {
+      "expected_decision": "ADMISSIBLE",
+      "expected_deduction_inr": 0,
+      "clause_basis": [
+        "Scope of Cover, Note (p.8): pre-hospitalisation is reimbursed up to 30 days before admission and post-hospitalisation up to 60 days after discharge. The case records exactly 30 and 60 days for the same condition, so both fall inside the windows.",
+        "No cap binds: room INR 15,000 against INR 20,000 (1% x 4 days); fees INR 50,000 against INR 125,000; medicines INR 100,000 against INR 200,000; ambulance INR 800 against INR 1,000."
+      ],
+      "required_evidence": [
+        { "must_contain": "Pre-Hospitalisation up to a maximum of 30 days", "page": 8 },
+        { "must_contain": "Normal Room expenses: 1.0% of Basic Sum Insured", "page": 7 }
+      ],
+      "notes": "A boundary case: 30 and 60 days are the maxima the policy allows, so the correct reading is inclusive and the expenses are payable."
+    },
+    "PUB-010": {
+      "expected_decision": "ADMISSIBLE",
+      "expected_deduction_inr": 0,
+      "clause_basis": [
+        "Exclusion 3 (p.9): cataract normally carries a one-year waiting period, and only 8 months of cover have elapsed.",
+        "Exclusion 3 NB (p.9): the one-year waiting period does not apply where the insured held at least one year of continuous cover under another Indian insurer's individual health policy AND the previous insurer's database and claim history have been received. Both conditions are met (1 year, database_and_claim_history_received = true), and the sum insured is unchanged at INR 500,000, so the waiver applies in full.",
+        "NB4 (p.7): eye surgery qualifies as a sub-24-hour day-care procedure."
+      ],
+      "required_evidence": [
+        { "must_contain": "a waiting period of 1 year will not apply", "page": 9 },
+        { "must_contain": "database and claim history", "page": 9 },
+        { "must_contain": "140 Day Care Procedures", "page": 7 }
+      ],
+      "notes": "Tests multi-clause reasoning: the exclusion and its waiver sit in different parts of the same clause and must be combined."
+    },
+    "PUB-011": {
+      "expected_decision": "NEEDS_REVIEW",
+      "expected_deduction_inr": null,
+      "clause_basis": [
+        "Definitions, Hospital (p.3): benefits are payable only for treatment in an institution registered under the Clinical Establishments Act or meeting the stated minimum criteria.",
+        "The facility is not a network provider, hospital_registered is null and hospital_minimum_criteria_documented is false, so a condition precedent to any hospitalisation benefit cannot be established.",
+        "The treatment itself (appendectomy) is otherwise unremarkable, which is precisely why the correct answer is abstention rather than rejection."
+      ],
+      "required_evidence": [
+        { "must_contain": "Hospital means any institution established for in-patient care", "page": 3 }
+      ],
+      "abstention_case": true
+    },
+    "PUB-012": {
+      "expected_decision": "NOT_ADMISSIBLE",
+      "expected_deduction_inr": null,
+      "clause_basis": [
+        "Definitions, Unproven/Experimental Treatment (p.6): treatment not based on established medical practice in India is experimental or unproven.",
+        "Exclusion 14 (p.10): treatments not approved by the Indian Medical Council are excluded.",
+        "The case records experimental = true, engaging both provisions."
+      ],
+      "required_evidence": [
+        { "must_contain": "Unproven/Experimental Treatment means", "page": 6 },
+        { "must_contain": "treatments not approved by Indian Medical council", "page": 10 }
+      ],
+      "notes": "Requires combining a definition with an exclusion in a different section."
+    }
+  }
+}

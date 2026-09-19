@@ -1,0 +1,42 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Built index (regenerate with: python -m scripts.ingest_policy)
+data/index/
+
+# Evaluation output (regenerate with: python -m evaluation.run_evaluation)
+# results.json / results.csv / summary.md ARE committed as evidence of the
+# reported metrics; only scratch output is ignored.
+evaluation/results/*.tmp
+evaluation/results/decisions.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+env/
+.Python
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.streamlit/secrets.toml
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

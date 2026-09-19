@@ -1,0 +1,161 @@
+{
+  "_readme": {
+    "purpose": "Ground truth for the 10 candidate-authored cases in evaluation/custom_cases/.",
+    "design_intent": "These cases were written to exercise behaviours the supplied 12 do not reach: a per-day ICU cap, several caps binding at once, PARTIALLY_ADMISSIBLE, continuity credit that is granted but still insufficient, two clauses pulling in opposite directions, and robustness to irrelevant attributes.",
+    "how_expected_outcomes_were_established": "Identical method to expected_public.json: the governing clause was located in the supplied wording and applied by hand before the engine was run. 'clause_basis' records the provision and page so the label can be checked independently.",
+    "distribution": {
+      "ADMISSIBLE": 2,
+      "ADMISSIBLE_WITH_LIMITS": 2,
+      "PARTIALLY_ADMISSIBLE": 1,
+      "NOT_ADMISSIBLE": 3,
+      "NEEDS_REVIEW": 2
+    }
+  },
+  "cases": {
+    "CUS-001": {
+      "expected_decision": "ADMISSIBLE",
+      "expected_deduction_inr": 0,
+      "scenario": "Normal admissible claim",
+      "clause_basis": [
+        "Sub limits (p.7): room capped at 1% of INR 400,000 = INR 4,000/day x 3 days (72 hours) = INR 12,000 against INR 11,000 claimed, so the cap does not bind.",
+        "Cover 2 and Cover 3 (p.7): fees INR 40,000 against a INR 100,000 cap; medicines INR 55,000 against a INR 160,000 cap.",
+        "58 months of continuous coverage clear every waiting period; cholecystitis is on no exclusion list."
+      ],
+      "required_evidence": [
+        { "must_contain": "Normal Room expenses: 1.0% of Basic Sum Insured", "page": 7 },
+        { "must_contain": "We will pay Reasonable and Customary charges", "page": 7 }
+      ]
+    },
+    "CUS-002": {
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "expected_deduction_inr": 89500,
+      "scenario": "Several category sub-limits bind at once, including the per-day ICU cap",
+      "clause_basis": [
+        "Sub limits (p.7): ICU capped at 2% of Basic Sum Insured per day = INR 6,000/day x 7 days (168 hours) = INR 42,000 against INR 90,000 claimed; INR 48,000 deducted.",
+        "Cover 2 (p.7): fees capped at 25% of INR 300,000 = INR 75,000 against INR 95,000 claimed; INR 20,000 deducted.",
+        "Cover 3 (p.7): consumables capped at 40% of INR 300,000 = INR 120,000 against INR 140,000 claimed; INR 20,000 deducted.",
+        "Cover 4 (p.8): ambulance capped at the lesser of 1% of Sum Insured (INR 3,000) and INR 1,000 = INR 1,000 against INR 2,500 claimed; INR 1,500 deducted.",
+        "Total deduction INR 89,500. Pre/post expenses at 10 and 25 days fall inside the 30/60-day windows."
+      ],
+      "required_evidence": [
+        { "must_contain": "Intensive Care/ Therapeutic Unit expenses: 2% of Basic Sum Insured", "page": 7 },
+        { "must_contain": "subject to a limit of 25% of Sum Assured", "page": 7 },
+        { "must_contain": "subject to a limit of 40% Sum Insured", "page": 7 },
+        { "must_contain": "Ambulance charges in connection with any admissible claim limited to", "page": 8 }
+      ]
+    },
+    "CUS-003": {
+      "expected_decision": "NOT_ADMISSIBLE",
+      "expected_deduction_inr": null,
+      "scenario": "Exclusion scenario",
+      "clause_basis": [
+        "Exclusion 7 (p.9): 'Dental treatment or surgery of any kind' is excluded without qualification.",
+        "The 30-hour admission is a valid hospitalisation, so the claim fails on the treatment category alone, not on the admission."
+      ],
+      "required_evidence": [
+        { "must_contain": "Dental treatment or surgery of any kind", "page": 9 }
+      ]
+    },
+    "CUS-004": {
+      "expected_decision": "NOT_ADMISSIBLE",
+      "expected_deduction_inr": null,
+      "scenario": "Waiting-period scenario",
+      "clause_basis": [
+        "Exclusion 3 (p.9): hernia is expressly listed among the conditions excluded in the first year of the cover.",
+        "Only 6 months of coverage have elapsed and there is no prior insurer continuity, so the NB waiver on p.9 is unavailable."
+      ],
+      "required_evidence": [
+        { "must_contain": "first year of operation of the insurance cover", "page": 9 },
+        { "must_contain": "Hernia", "page": 9 }
+      ]
+    },
+    "CUS-005": {
+      "expected_decision": "NEEDS_REVIEW",
+      "expected_deduction_inr": null,
+      "scenario": "Insufficient-evidence scenario",
+      "clause_basis": [
+        "Definitions, Hospital (p.3): the facility is not a network provider and neither registration nor minimum-criteria compliance is evidenced.",
+        "Definitions, Medically Necessary (p.4): medical necessity is explicitly unestablished.",
+        "Exclusion 1 (p.8): pre-existing status is null, so the 48-month waiting period cannot be evaluated.",
+        "Three independent conditions precedent are unresolved and only a claim form was supplied."
+      ],
+      "required_evidence": [
+        { "must_contain": "Hospital means any institution established for in-patient care", "page": 3 },
+        { "must_contain": "Medically Necessary means any treatment", "page": 4 }
+      ],
+      "abstention_case": true
+    },
+    "CUS-006": {
+      "expected_decision": "PARTIALLY_ADMISSIBLE",
+      "expected_deduction_inr": 0,
+      "scenario": "Part of the claim falls outside a policy time window",
+      "clause_basis": [
+        "Scope of Cover, Note (p.8): pre-hospitalisation is reimbursed for a maximum of 30 days before admission and post-hospitalisation for a maximum of 60 days after discharge.",
+        "The case records 45 days and 90 days, so INR 12,000 of pre-hospitalisation and INR 18,000 of post-hospitalisation expenses fall outside the windows and are not payable.",
+        "The hospitalisation itself is fully covered and no category cap binds, so the claim is partially rather than wholly admissible."
+      ],
+      "required_evidence": [
+        { "must_contain": "Pre-Hospitalisation up to a maximum of 30 days", "page": 8 }
+      ],
+      "notes": "The excluded portion is reported as a non-payable component rather than as a capped amount, which is what distinguishes PARTIALLY_ADMISSIBLE from ADMISSIBLE_WITH_LIMITS."
+    },
+    "CUS-007": {
+      "expected_decision": "NOT_ADMISSIBLE",
+      "expected_deduction_inr": null,
+      "scenario": "Continuity credit granted but still insufficient",
+      "clause_basis": [
+        "Exclusion 1 (p.8): the pre-existing disease waiting period is reduced by the number of continuous preceding years of coverage under the previous health insurance policy.",
+        "Three prior years are credited (database and claim history received, previous sum insured equal at INR 500,000), giving 6 + 36 = 42 effective months.",
+        "42 months is still short of the 48 months the policy requires, so the claim is not payable."
+      ],
+      "required_evidence": [
+        { "must_contain": "Pre-existing diseases will not be covered until 48 months", "page": 8 },
+        { "must_contain": "reduced by the number of Your continuous preceding years", "page": 8 }
+      ],
+      "notes": "Guards against two opposite errors: ignoring continuity credit entirely, and granting the waiver merely because prior cover exists."
+    },
+    "CUS-008": {
+      "expected_decision": "ADMISSIBLE",
+      "expected_deduction_inr": 0,
+      "scenario": "Two clauses pull in opposite directions",
+      "clause_basis": [
+        "NB4 (p.7): dialysis is expressly named among the treatments covered where the stay is under 24 hours, so the 5-hour admission qualifies.",
+        "Exclusion 3 (p.9): dialysis for renal failure carries a first-year waiting period, but 46 months of coverage have elapsed, so it does not bite.",
+        "No cap binds: fees INR 6,000 against a 25% cap of INR 87,500; consumables INR 14,000 against a 40% cap of INR 140,000."
+      ],
+      "required_evidence": [
+        { "must_contain": "140 Day Care Procedures", "page": 7 },
+        { "must_contain": "first year of operation of the insurance cover", "page": 9 }
+      ],
+      "notes": "A short admission that looks like an out-patient visit but is expressly covered; the engine must reconcile a covering clause and an excluding clause rather than stopping at the first one it retrieves."
+    },
+    "CUS-009": {
+      "expected_decision": "NEEDS_REVIEW",
+      "expected_deduction_inr": null,
+      "scenario": "Domiciliary treatment with no qualifying circumstance evidenced",
+      "clause_basis": [
+        "Definitions, Domiciliary Treatment (p.2): cover requires either that the patient cannot be moved to a hospital or that no hospital room was available.",
+        "Both fields are null, so neither limb is established and the condition precedent fails.",
+        "The treatment itself is not excluded, so rejection would be wrong; abstention is the correct behaviour."
+      ],
+      "required_evidence": [
+        { "must_contain": "Domiciliary Treatment means medical treatment", "page": 2 }
+      ],
+      "abstention_case": true
+    },
+    "CUS-010": {
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "expected_deduction_inr": 8000,
+      "scenario": "Irrelevant attributes must not influence the decision",
+      "clause_basis": [
+        "Sub limits (p.7): room capped at 1% of INR 800,000 = INR 8,000/day x 4 days (96 hours) = INR 32,000 against INR 40,000 claimed; INR 8,000 deducted.",
+        "No other cap binds: fees INR 70,000 against INR 200,000; consumables INR 120,000 against INR 320,000.",
+        "The case carries loyalty tier, star rating, parking availability, ward wifi, preferred language, marketing opt-in, referral source and internal notes. None appears in the policy and none may affect the outcome."
+      ],
+      "required_evidence": [
+        { "must_contain": "Normal Room expenses: 1.0% of Basic Sum Insured", "page": 7 }
+      ],
+      "notes": "Directly tests RULE 9. The expected deduction is identical to what the same claim would produce with the irrelevant attributes stripped out."
+    }
+  }
+}

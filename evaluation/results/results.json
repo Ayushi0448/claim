@@ -1,0 +1,1001 @@
+{
+  "generated_at": "2026-09-19T06:51:35+00:00",
+  "engine_version": "1.0.0",
+  "backends": {
+    "embedding": "lsa",
+    "dense_index": "numpy",
+    "sparse": "bm25",
+    "reranker": "lexical_semantic",
+    "chunks": "137",
+    "orchestrator": "langgraph",
+    "llm": "disabled",
+    "engine_version": "1.0.0"
+  },
+  "elapsed_seconds": 23.76,
+  "overall": {
+    "n_cases": 22,
+    "n_labelled": 22,
+    "decision_accuracy": 1.0,
+    "decision_accuracy_by_expected": {
+      "ADMISSIBLE_WITH_LIMITS": {
+        "expected": 5,
+        "correct": 5
+      },
+      "NOT_ADMISSIBLE": {
+        "expected": 7,
+        "correct": 7
+      },
+      "ADMISSIBLE": {
+        "expected": 5,
+        "correct": 5
+      },
+      "NEEDS_REVIEW": {
+        "expected": 4,
+        "correct": 4
+      },
+      "PARTIALLY_ADMISSIBLE": {
+        "expected": 1,
+        "correct": 1
+      }
+    },
+    "confusion_matrix": {
+      "ADMISSIBLE_WITH_LIMITS": {
+        "ADMISSIBLE_WITH_LIMITS": 5
+      },
+      "NOT_ADMISSIBLE": {
+        "NOT_ADMISSIBLE": 7
+      },
+      "ADMISSIBLE": {
+        "ADMISSIBLE": 5
+      },
+      "NEEDS_REVIEW": {
+        "NEEDS_REVIEW": 4
+      },
+      "PARTIALLY_ADMISSIBLE": {
+        "PARTIALLY_ADMISSIBLE": 1
+      }
+    },
+    "deduction_accuracy": 1.0,
+    "deduction_cases_checked": 11,
+    "evidence_recall_at_k": 1.0,
+    "citation_hit_rate": 1.0,
+    "citation_correctness": 1.0,
+    "validation_pass_rate": 1.0,
+    "unsupported_claims_total": 0,
+    "abstention": {
+      "expected_abstentions": 4,
+      "actual_abstentions": 4,
+      "true_positives": 4,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "true_negatives": 18,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "confidence": {
+      "mean": 0.9592,
+      "mean_when_correct": 0.9592,
+      "mean_when_incorrect": null
+    },
+    "latency_ms": {
+      "mean": 264.0,
+      "median": 248.5,
+      "max": 572,
+      "min": 165
+    }
+  },
+  "suites": {
+    "public": {
+      "n_cases": 12,
+      "n_labelled": 12,
+      "decision_accuracy": 1.0,
+      "decision_accuracy_by_expected": {
+        "ADMISSIBLE_WITH_LIMITS": {
+          "expected": 3,
+          "correct": 3
+        },
+        "NOT_ADMISSIBLE": {
+          "expected": 4,
+          "correct": 4
+        },
+        "ADMISSIBLE": {
+          "expected": 3,
+          "correct": 3
+        },
+        "NEEDS_REVIEW": {
+          "expected": 2,
+          "correct": 2
+        }
+      },
+      "confusion_matrix": {
+        "ADMISSIBLE_WITH_LIMITS": {
+          "ADMISSIBLE_WITH_LIMITS": 3
+        },
+        "NOT_ADMISSIBLE": {
+          "NOT_ADMISSIBLE": 4
+        },
+        "ADMISSIBLE": {
+          "ADMISSIBLE": 3
+        },
+        "NEEDS_REVIEW": {
+          "NEEDS_REVIEW": 2
+        }
+      },
+      "deduction_accuracy": 1.0,
+      "deduction_cases_checked": 6,
+      "evidence_recall_at_k": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "validation_pass_rate": 1.0,
+      "unsupported_claims_total": 0,
+      "abstention": {
+        "expected_abstentions": 2,
+        "actual_abstentions": 2,
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "true_negatives": 10,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "confidence": {
+        "mean": 0.9652,
+        "mean_when_correct": 0.9652,
+        "mean_when_incorrect": null
+      },
+      "latency_ms": {
+        "mean": 288,
+        "median": 265.0,
+        "max": 572,
+        "min": 169
+      }
+    },
+    "custom": {
+      "n_cases": 10,
+      "n_labelled": 10,
+      "decision_accuracy": 1.0,
+      "decision_accuracy_by_expected": {
+        "ADMISSIBLE": {
+          "expected": 2,
+          "correct": 2
+        },
+        "ADMISSIBLE_WITH_LIMITS": {
+          "expected": 2,
+          "correct": 2
+        },
+        "NOT_ADMISSIBLE": {
+          "expected": 3,
+          "correct": 3
+        },
+        "NEEDS_REVIEW": {
+          "expected": 2,
+          "correct": 2
+        },
+        "PARTIALLY_ADMISSIBLE": {
+          "expected": 1,
+          "correct": 1
+        }
+      },
+      "confusion_matrix": {
+        "ADMISSIBLE": {
+          "ADMISSIBLE": 2
+        },
+        "ADMISSIBLE_WITH_LIMITS": {
+          "ADMISSIBLE_WITH_LIMITS": 2
+        },
+        "NOT_ADMISSIBLE": {
+          "NOT_ADMISSIBLE": 3
+        },
+        "NEEDS_REVIEW": {
+          "NEEDS_REVIEW": 2
+        },
+        "PARTIALLY_ADMISSIBLE": {
+          "PARTIALLY_ADMISSIBLE": 1
+        }
+      },
+      "deduction_accuracy": 1.0,
+      "deduction_cases_checked": 5,
+      "evidence_recall_at_k": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "validation_pass_rate": 1.0,
+      "unsupported_claims_total": 0,
+      "abstention": {
+        "expected_abstentions": 2,
+        "actual_abstentions": 2,
+        "true_positives": 2,
+        "false_positives": 0,
+        "false_negatives": 0,
+        "true_negatives": 8,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "confidence": {
+        "mean": 0.952,
+        "mean_when_correct": 0.952,
+        "mean_when_incorrect": null
+      },
+      "latency_ms": {
+        "mean": 235.1,
+        "median": 238.0,
+        "max": 298,
+        "min": 165
+      }
+    }
+  },
+  "cases": [
+    {
+      "case_id": "PUB-001",
+      "suite": "public",
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "actual_decision": "ADMISSIBLE_WITH_LIMITS",
+      "decision_correct": true,
+      "confidence": 0.9664,
+      "validation": "PASS",
+      "expected_deduction_inr": 10200,
+      "actual_deduction_inr": 10200.0,
+      "deduction_correct": true,
+      "n_evidence": 28,
+      "n_citations": 12,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 572,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "PUB-002",
+      "suite": "public",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "confidence": 0.9961,
+      "validation": "PASS",
+      "expected_deduction_inr": "",
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": "",
+      "n_evidence": 28,
+      "n_citations": 10,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 385,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "PUB-003",
+      "suite": "public",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "confidence": 0.9666,
+      "validation": "PASS",
+      "expected_deduction_inr": "",
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": "",
+      "n_evidence": 28,
+      "n_citations": 12,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 282,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "PUB-004",
+      "suite": "public",
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "actual_decision": "ADMISSIBLE_WITH_LIMITS",
+      "decision_correct": true,
+      "confidence": 0.9952,
+      "validation": "PASS",
+      "expected_deduction_inr": 5000,
+      "actual_deduction_inr": 5000.0,
+      "deduction_correct": true,
+      "n_evidence": 24,
+      "n_citations": 6,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 169,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "PUB-005",
+      "suite": "public",
+      "expected_decision": "ADMISSIBLE",
+      "actual_decision": "ADMISSIBLE",
+      "decision_correct": true,
+      "confidence": 0.9658,
+      "validation": "PASS",
+      "expected_deduction_inr": 0,
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": true,
+      "n_evidence": 28,
+      "n_citations": 12,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 264,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "PUB-006",
+      "suite": "public",
+      "expected_decision": "NEEDS_REVIEW",
+      "actual_decision": "NEEDS_REVIEW",
+      "decision_correct": true,
+      "confidence": 0.8561,
+      "validation": "PASS",
+      "expected_deduction_inr": "",
+      "actual_deduction_inr": 10000.0,
+      "deduction_correct": "",
+      "n_evidence": 28,
+      "n_citations": 13,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 266,
+      "abstained": true,
+      "expected_abstention": true,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "PUB-007",
+      "suite": "public",
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "actual_decision": "ADMISSIBLE_WITH_LIMITS",
+      "decision_correct": true,
+      "confidence": 0.9664,
+      "validation": "PASS",
+      "expected_deduction_inr": 190500,
+      "actual_deduction_inr": 190500.0,
+      "deduction_correct": true,
+      "n_evidence": 28,
+      "n_citations": 12,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 231,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "PUB-008",
+      "suite": "public",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "confidence": 0.9958,
+      "validation": "PASS",
+      "expected_deduction_inr": "",
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": "",
+      "n_evidence": 28,
+      "n_citations": 11,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 220,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "PUB-009",
+      "suite": "public",
+      "expected_decision": "ADMISSIBLE",
+      "actual_decision": "ADMISSIBLE",
+      "decision_correct": true,
+      "confidence": 0.9964,
+      "validation": "PASS",
+      "expected_deduction_inr": 0,
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": true,
+      "n_evidence": 28,
+      "n_citations": 12,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 303,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "PUB-010",
+      "suite": "public",
+      "expected_decision": "ADMISSIBLE",
+      "actual_decision": "ADMISSIBLE",
+      "decision_correct": true,
+      "confidence": 0.9955,
+      "validation": "PASS",
+      "expected_deduction_inr": 0,
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": true,
+      "n_evidence": 28,
+      "n_citations": 11,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 284,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "PUB-011",
+      "suite": "public",
+      "expected_decision": "NEEDS_REVIEW",
+      "actual_decision": "NEEDS_REVIEW",
+      "decision_correct": true,
+      "confidence": 0.8861,
+      "validation": "PASS",
+      "expected_deduction_inr": "",
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": "",
+      "n_evidence": 28,
+      "n_citations": 10,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 230,
+      "abstained": true,
+      "expected_abstention": true,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "PUB-012",
+      "suite": "public",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "confidence": 0.9956,
+      "validation": "PASS",
+      "expected_deduction_inr": "",
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": "",
+      "n_evidence": 28,
+      "n_citations": 12,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 250,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "CUS-001",
+      "suite": "custom",
+      "expected_decision": "ADMISSIBLE",
+      "actual_decision": "ADMISSIBLE",
+      "decision_correct": true,
+      "confidence": 0.9961,
+      "validation": "PASS",
+      "expected_deduction_inr": 0,
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": true,
+      "n_evidence": 28,
+      "n_citations": 10,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 225,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "CUS-002",
+      "suite": "custom",
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "actual_decision": "ADMISSIBLE_WITH_LIMITS",
+      "decision_correct": true,
+      "confidence": 0.9964,
+      "validation": "PASS",
+      "expected_deduction_inr": 89500,
+      "actual_deduction_inr": 89500.0,
+      "deduction_correct": true,
+      "n_evidence": 28,
+      "n_citations": 12,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 258,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "CUS-003",
+      "suite": "custom",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "confidence": 0.9959,
+      "validation": "PASS",
+      "expected_deduction_inr": "",
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": "",
+      "n_evidence": 28,
+      "n_citations": 11,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 217,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "CUS-004",
+      "suite": "custom",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "confidence": 0.9958,
+      "validation": "PASS",
+      "expected_deduction_inr": "",
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": "",
+      "n_evidence": 28,
+      "n_citations": 11,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 247,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "CUS-005",
+      "suite": "custom",
+      "expected_decision": "NEEDS_REVIEW",
+      "actual_decision": "NEEDS_REVIEW",
+      "decision_correct": true,
+      "confidence": 0.6961,
+      "validation": "PASS",
+      "expected_deduction_inr": "",
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": "",
+      "n_evidence": 28,
+      "n_citations": 12,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 259,
+      "abstained": true,
+      "expected_abstention": true,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "CUS-006",
+      "suite": "custom",
+      "expected_decision": "PARTIALLY_ADMISSIBLE",
+      "actual_decision": "PARTIALLY_ADMISSIBLE",
+      "decision_correct": true,
+      "confidence": 0.9964,
+      "validation": "PASS",
+      "expected_deduction_inr": 0,
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": true,
+      "n_evidence": 28,
+      "n_citations": 12,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 246,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "CUS-007",
+      "suite": "custom",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "confidence": 0.9666,
+      "validation": "PASS",
+      "expected_deduction_inr": "",
+      "actual_deduction_inr": 500.0,
+      "deduction_correct": "",
+      "n_evidence": 28,
+      "n_citations": 13,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 298,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "CUS-008",
+      "suite": "custom",
+      "expected_decision": "ADMISSIBLE",
+      "actual_decision": "ADMISSIBLE",
+      "decision_correct": true,
+      "confidence": 0.9955,
+      "validation": "PASS",
+      "expected_deduction_inr": 0,
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": true,
+      "n_evidence": 28,
+      "n_citations": 11,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 230,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "CUS-009",
+      "suite": "custom",
+      "expected_decision": "NEEDS_REVIEW",
+      "actual_decision": "NEEDS_REVIEW",
+      "decision_correct": true,
+      "confidence": 0.8852,
+      "validation": "PASS",
+      "expected_deduction_inr": "",
+      "actual_deduction_inr": 0.0,
+      "deduction_correct": "",
+      "n_evidence": 24,
+      "n_citations": 6,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 165,
+      "abstained": true,
+      "expected_abstention": true,
+      "evidence_missing": ""
+    },
+    {
+      "case_id": "CUS-010",
+      "suite": "custom",
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "actual_decision": "ADMISSIBLE_WITH_LIMITS",
+      "decision_correct": true,
+      "confidence": 0.9961,
+      "validation": "PASS",
+      "expected_deduction_inr": 8000,
+      "actual_deduction_inr": 8000.0,
+      "deduction_correct": true,
+      "n_evidence": 28,
+      "n_citations": 10,
+      "evidence_recall": 1.0,
+      "citation_hit_rate": 1.0,
+      "citation_correctness": 1.0,
+      "unsupported_claims": 0,
+      "latency_ms": 206,
+      "abstained": false,
+      "expected_abstention": false,
+      "evidence_missing": ""
+    }
+  ],
+  "case_detail": [
+    {
+      "case_id": "PUB-001",
+      "suite": "public",
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "actual_decision": "ADMISSIBLE_WITH_LIMITS",
+      "decision_correct": true,
+      "evidence_found": [
+        "Normal Room expenses: 1.0% of Basic Sum Insured",
+        "Ambulance charges in connection with any admissible claim limited to",
+        "waiting period of 30 days will apply to all claims"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "PUB-002",
+      "suite": "public",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "evidence_found": [
+        "waiting period of 30 days will apply to all claims"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "PUB-003",
+      "suite": "public",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "evidence_found": [
+        "Pre-existing diseases will not be covered until 48 months"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "PUB-004",
+      "suite": "public",
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "actual_decision": "ADMISSIBLE_WITH_LIMITS",
+      "decision_correct": true,
+      "evidence_found": [
+        "Domiciliary Treatment means medical treatment",
+        "maximum aggregate sub-limit of 20% of the Basic Sum Insured"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "PUB-005",
+      "suite": "public",
+      "expected_decision": "ADMISSIBLE",
+      "actual_decision": "ADMISSIBLE",
+      "decision_correct": true,
+      "evidence_found": [
+        "140 Day Care Procedures",
+        "first year of operation of the insurance cover"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "PUB-006",
+      "suite": "public",
+      "expected_decision": "NEEDS_REVIEW",
+      "actual_decision": "NEEDS_REVIEW",
+      "decision_correct": true,
+      "evidence_found": [
+        "Medically Necessary means any treatment",
+        "Hospital means any institution established for in-patient care"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "PUB-007",
+      "suite": "public",
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "actual_decision": "ADMISSIBLE_WITH_LIMITS",
+      "decision_correct": true,
+      "evidence_found": [
+        "Normal Room expenses: 1.0% of Basic Sum Insured",
+        "subject to a limit of 25% of Sum Assured",
+        "subject to a limit of 40% Sum Insured",
+        "Ambulance charges in connection with any admissible claim limited to"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "PUB-008",
+      "suite": "public",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "evidence_found": [
+        "cosmetic or aesthetic treatment of any description"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "PUB-009",
+      "suite": "public",
+      "expected_decision": "ADMISSIBLE",
+      "actual_decision": "ADMISSIBLE",
+      "decision_correct": true,
+      "evidence_found": [
+        "Pre-Hospitalisation up to a maximum of 30 days",
+        "Normal Room expenses: 1.0% of Basic Sum Insured"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "PUB-010",
+      "suite": "public",
+      "expected_decision": "ADMISSIBLE",
+      "actual_decision": "ADMISSIBLE",
+      "decision_correct": true,
+      "evidence_found": [
+        "a waiting period of 1 year will not apply",
+        "database and claim history",
+        "140 Day Care Procedures"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "PUB-011",
+      "suite": "public",
+      "expected_decision": "NEEDS_REVIEW",
+      "actual_decision": "NEEDS_REVIEW",
+      "decision_correct": true,
+      "evidence_found": [
+        "Hospital means any institution established for in-patient care"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "PUB-012",
+      "suite": "public",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "evidence_found": [
+        "Unproven/Experimental Treatment means",
+        "treatments not approved by Indian Medical council"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "CUS-001",
+      "suite": "custom",
+      "expected_decision": "ADMISSIBLE",
+      "actual_decision": "ADMISSIBLE",
+      "decision_correct": true,
+      "evidence_found": [
+        "Normal Room expenses: 1.0% of Basic Sum Insured",
+        "We will pay Reasonable and Customary charges"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "CUS-002",
+      "suite": "custom",
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "actual_decision": "ADMISSIBLE_WITH_LIMITS",
+      "decision_correct": true,
+      "evidence_found": [
+        "Intensive Care/ Therapeutic Unit expenses: 2% of Basic Sum Insured",
+        "subject to a limit of 25% of Sum Assured",
+        "subject to a limit of 40% Sum Insured",
+        "Ambulance charges in connection with any admissible claim limited to"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "CUS-003",
+      "suite": "custom",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "evidence_found": [
+        "Dental treatment or surgery of any kind"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "CUS-004",
+      "suite": "custom",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "evidence_found": [
+        "first year of operation of the insurance cover",
+        "Hernia"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "CUS-005",
+      "suite": "custom",
+      "expected_decision": "NEEDS_REVIEW",
+      "actual_decision": "NEEDS_REVIEW",
+      "decision_correct": true,
+      "evidence_found": [
+        "Hospital means any institution established for in-patient care",
+        "Medically Necessary means any treatment"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "CUS-006",
+      "suite": "custom",
+      "expected_decision": "PARTIALLY_ADMISSIBLE",
+      "actual_decision": "PARTIALLY_ADMISSIBLE",
+      "decision_correct": true,
+      "evidence_found": [
+        "Pre-Hospitalisation up to a maximum of 30 days"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "CUS-007",
+      "suite": "custom",
+      "expected_decision": "NOT_ADMISSIBLE",
+      "actual_decision": "NOT_ADMISSIBLE",
+      "decision_correct": true,
+      "evidence_found": [
+        "Pre-existing diseases will not be covered until 48 months",
+        "reduced by the number of Your continuous preceding years"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "CUS-008",
+      "suite": "custom",
+      "expected_decision": "ADMISSIBLE",
+      "actual_decision": "ADMISSIBLE",
+      "decision_correct": true,
+      "evidence_found": [
+        "140 Day Care Procedures",
+        "first year of operation of the insurance cover"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "CUS-009",
+      "suite": "custom",
+      "expected_decision": "NEEDS_REVIEW",
+      "actual_decision": "NEEDS_REVIEW",
+      "decision_correct": true,
+      "evidence_found": [
+        "Domiciliary Treatment means medical treatment"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    },
+    {
+      "case_id": "CUS-010",
+      "suite": "custom",
+      "expected_decision": "ADMISSIBLE_WITH_LIMITS",
+      "actual_decision": "ADMISSIBLE_WITH_LIMITS",
+      "decision_correct": true,
+      "evidence_found": [
+        "Normal Room expenses: 1.0% of Basic Sum Insured"
+      ],
+      "evidence_missing": [],
+      "notes": []
+    }
+  ]
+}

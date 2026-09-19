@@ -1,0 +1,335 @@
+[
+  {
+    "case_id": "CUS-001",
+    "policy_id": "USGIC-CSC-2017-2018",
+    "policy_start_date": "2021-04-01",
+    "claim_date": "2026-02-18",
+    "sum_insured_inr": 400000,
+    "continuous_coverage_months": 58,
+    "prior_insurer_continuous_years": 0,
+    "patient": { "age": 31 },
+    "hospital": { "name": "Greenfield General Hospital", "network_provider": true },
+    "treatment": {
+      "type": "inpatient",
+      "admission_hours": 72,
+      "diagnosis": "Acute cholecystitis",
+      "procedure": "Laparoscopic cholecystectomy",
+      "pre_existing": false,
+      "experimental": false
+    },
+    "expenses_inr": {
+      "room": 11000,
+      "doctor_fees": 40000,
+      "medicines_diagnostics": 55000,
+      "pre_hospitalization": 0,
+      "post_hospitalization": 0,
+      "ambulance": 0
+    },
+    "documents": ["claim_form", "discharge_summary", "itemized_bill", "doctor_prescription"],
+    "task": "Straightforward admissible claim: verify that no limit binds and no waiting period applies."
+  },
+  {
+    "case_id": "CUS-002",
+    "policy_id": "USGIC-CSC-2017-2018",
+    "policy_start_date": "2022-01-01",
+    "claim_date": "2026-05-20",
+    "sum_insured_inr": 300000,
+    "continuous_coverage_months": 52,
+    "prior_insurer_continuous_years": 0,
+    "patient": { "age": 58 },
+    "hospital": { "name": "Lakeside Critical Care", "network_provider": true },
+    "treatment": {
+      "type": "inpatient",
+      "admission_hours": 168,
+      "diagnosis": "Severe sepsis requiring intensive care",
+      "procedure": "Intensive care management",
+      "pre_existing": false,
+      "experimental": false
+    },
+    "expenses_inr": {
+      "room": 0,
+      "icu": 90000,
+      "doctor_fees": 95000,
+      "medicines_diagnostics": 140000,
+      "pre_hospitalization": 3000,
+      "post_hospitalization": 4000,
+      "ambulance": 2500
+    },
+    "documents": ["claim_form", "discharge_summary", "itemized_bill", "icu_records"],
+    "expense_timing": {
+      "pre_hospitalization_days_before_admission": 10,
+      "post_hospitalization_days_after_discharge": 25,
+      "same_condition_confirmed": true
+    },
+    "task": "Multiple category sub-limits bind simultaneously: ICU per-day cap, practitioner fee cap, consumables cap and ambulance cap."
+  },
+  {
+    "case_id": "CUS-003",
+    "policy_id": "USGIC-CSC-2017-2018",
+    "policy_start_date": "2020-06-01",
+    "claim_date": "2026-03-09",
+    "sum_insured_inr": 500000,
+    "continuous_coverage_months": 69,
+    "prior_insurer_continuous_years": 0,
+    "patient": { "age": 44 },
+    "hospital": { "name": "Smile Dental Hospital", "network_provider": true },
+    "treatment": {
+      "type": "inpatient",
+      "admission_hours": 30,
+      "diagnosis": "Impacted molar requiring dental surgery",
+      "procedure": "Dental surgery under general anaesthesia",
+      "pre_existing": false,
+      "experimental": false
+    },
+    "expenses_inr": {
+      "room": 8000,
+      "doctor_fees": 25000,
+      "medicines_diagnostics": 18000,
+      "pre_hospitalization": 0,
+      "post_hospitalization": 0,
+      "ambulance": 0
+    },
+    "documents": ["claim_form", "discharge_summary", "itemized_bill"],
+    "task": "Exclusion scenario: the treatment is excluded by category even though the admission itself is a valid hospitalisation."
+  },
+  {
+    "case_id": "CUS-004",
+    "policy_id": "USGIC-CSC-2017-2018",
+    "policy_start_date": "2025-11-15",
+    "claim_date": "2026-06-04",
+    "sum_insured_inr": 450000,
+    "continuous_coverage_months": 6,
+    "prior_insurer_continuous_years": 0,
+    "patient": { "age": 49 },
+    "hospital": { "name": "Northgate Surgical Centre", "network_provider": true },
+    "treatment": {
+      "type": "inpatient",
+      "admission_hours": 48,
+      "diagnosis": "Inguinal hernia",
+      "procedure": "Hernia repair",
+      "pre_existing": false,
+      "experimental": false
+    },
+    "expenses_inr": {
+      "room": 9000,
+      "doctor_fees": 35000,
+      "medicines_diagnostics": 40000,
+      "pre_hospitalization": 0,
+      "post_hospitalization": 0,
+      "ambulance": 0
+    },
+    "documents": ["claim_form", "discharge_summary", "itemized_bill", "doctor_prescription"],
+    "task": "Waiting-period scenario: the condition is on the policy's first-year list and the cover is only six months old."
+  },
+  {
+    "case_id": "CUS-005",
+    "policy_id": "USGIC-CSC-2017-2018",
+    "policy_start_date": "2023-02-01",
+    "claim_date": "2026-04-22",
+    "sum_insured_inr": 500000,
+    "continuous_coverage_months": 38,
+    "prior_insurer_continuous_years": 0,
+    "patient": { "age": 36 },
+    "hospital": { "name": "Riverbend Care Centre", "network_provider": false },
+    "treatment": {
+      "type": "inpatient",
+      "admission_hours": 60,
+      "diagnosis": "Lower respiratory infection",
+      "procedure": "Medical management",
+      "pre_existing": null,
+      "experimental": false
+    },
+    "expenses_inr": {
+      "room": 14000,
+      "doctor_fees": 22000,
+      "medicines_diagnostics": 36000,
+      "pre_hospitalization": 0,
+      "post_hospitalization": 0,
+      "ambulance": 0
+    },
+    "documents": ["claim_form"],
+    "evidence_context": {
+      "hospital_registered": null,
+      "hospital_minimum_criteria_documented": null,
+      "medical_necessity_confirmed": null
+    },
+    "task": "Insufficient-evidence scenario: facility standing, medical necessity and pre-existing status are all unestablished."
+  },
+  {
+    "case_id": "CUS-006",
+    "policy_id": "USGIC-CSC-2017-2018",
+    "policy_start_date": "2021-09-01",
+    "claim_date": "2026-01-30",
+    "sum_insured_inr": 600000,
+    "continuous_coverage_months": 52,
+    "prior_insurer_continuous_years": 0,
+    "patient": { "age": 41 },
+    "hospital": { "name": "St. Brigid's Hospital", "network_provider": true },
+    "treatment": {
+      "type": "inpatient",
+      "admission_hours": 96,
+      "diagnosis": "Road traffic accident with fracture",
+      "procedure": "Open reduction and internal fixation",
+      "pre_existing": false,
+      "experimental": false
+    },
+    "expenses_inr": {
+      "room": 20000,
+      "doctor_fees": 60000,
+      "medicines_diagnostics": 95000,
+      "pre_hospitalization": 12000,
+      "post_hospitalization": 18000,
+      "ambulance": 900
+    },
+    "documents": [
+      "claim_form", "discharge_summary", "itemized_bill", "doctor_prescription",
+      "pre_post_expense_records"
+    ],
+    "expense_timing": {
+      "pre_hospitalization_days_before_admission": 45,
+      "post_hospitalization_days_after_discharge": 90,
+      "same_condition_confirmed": true
+    },
+    "task": "Partial admissibility: the hospitalisation is covered but pre- and post-hospitalisation expenses fall outside the policy's 30-day and 60-day windows."
+  },
+  {
+    "case_id": "CUS-007",
+    "policy_id": "USGIC-CSC-2017-2018",
+    "policy_start_date": "2026-02-01",
+    "claim_date": "2026-08-14",
+    "sum_insured_inr": 500000,
+    "continuous_coverage_months": 6,
+    "prior_insurer_continuous_years": 3,
+    "patient": { "age": 55 },
+    "hospital": { "name": "Harborview Speciality Hospital", "network_provider": true },
+    "treatment": {
+      "type": "inpatient",
+      "admission_hours": 120,
+      "diagnosis": "Pre-existing coronary artery disease with unstable angina",
+      "procedure": "Coronary angioplasty",
+      "pre_existing": true,
+      "experimental": false
+    },
+    "expenses_inr": {
+      "room": 25000,
+      "doctor_fees": 110000,
+      "medicines_diagnostics": 180000,
+      "pre_hospitalization": 6000,
+      "post_hospitalization": 9000,
+      "ambulance": 1500
+    },
+    "documents": [
+      "claim_form", "discharge_summary", "itemized_bill", "prior_medical_records",
+      "prior_policy_records"
+    ],
+    "prior_policy": {
+      "insurer_type": "Indian individual health insurer",
+      "continuous_years": 3,
+      "database_and_claim_history_received": true,
+      "previous_sum_insured_inr": 500000
+    },
+    "task": "Continuity credit is insufficient: 6 months plus 3 credited years still falls short of the 48-month pre-existing disease waiting period."
+  },
+  {
+    "case_id": "CUS-008",
+    "policy_id": "USGIC-CSC-2017-2018",
+    "policy_start_date": "2022-07-01",
+    "claim_date": "2026-05-05",
+    "sum_insured_inr": 350000,
+    "continuous_coverage_months": 46,
+    "prior_insurer_continuous_years": 0,
+    "patient": { "age": 62 },
+    "hospital": { "name": "Meadowvale Day Surgery", "network_provider": true },
+    "treatment": {
+      "type": "day_care",
+      "admission_hours": 5,
+      "diagnosis": "Chronic renal failure",
+      "procedure": "Maintenance haemodialysis",
+      "pre_existing": false,
+      "experimental": false
+    },
+    "expenses_inr": {
+      "room": 0,
+      "doctor_fees": 6000,
+      "medicines_diagnostics": 14000,
+      "pre_hospitalization": 0,
+      "post_hospitalization": 0,
+      "ambulance": 0
+    },
+    "documents": ["claim_form", "procedure_record", "itemized_bill", "doctor_certificate"],
+    "task": "Two clauses interact: dialysis is expressly covered as a sub-24-hour day-care procedure, yet it also appears on the first-year waiting list."
+  },
+  {
+    "case_id": "CUS-009",
+    "policy_id": "USGIC-CSC-2017-2018",
+    "policy_start_date": "2023-03-01",
+    "claim_date": "2026-07-19",
+    "sum_insured_inr": 500000,
+    "continuous_coverage_months": 40,
+    "prior_insurer_continuous_years": 0,
+    "patient": { "age": 27 },
+    "hospital": { "name": "Careful Hands Home Nursing", "network_provider": false },
+    "treatment": {
+      "type": "domiciliary",
+      "admission_hours": 0,
+      "diagnosis": "Severe dengue requiring continuous monitoring",
+      "procedure": "Domiciliary treatment",
+      "pre_existing": false,
+      "hospital_room_unavailable": null,
+      "patient_cannot_be_moved": null,
+      "experimental": false
+    },
+    "expenses_inr": {
+      "room": 0,
+      "doctor_fees": 18000,
+      "medicines_diagnostics": 42000,
+      "pre_hospitalization": 0,
+      "post_hospitalization": 0,
+      "ambulance": 0
+    },
+    "documents": ["claim_form", "itemized_bill"],
+    "task": "Domiciliary treatment where neither qualifying circumstance has been evidenced."
+  },
+  {
+    "case_id": "CUS-010",
+    "policy_id": "USGIC-CSC-2017-2018",
+    "policy_start_date": "2019-05-01",
+    "claim_date": "2026-09-01",
+    "sum_insured_inr": 800000,
+    "continuous_coverage_months": 88,
+    "prior_insurer_continuous_years": 0,
+    "patient": {
+      "age": 47,
+      "preferred_language": "Marathi",
+      "loyalty_tier": "gold",
+      "marketing_opt_in": true
+    },
+    "hospital": {
+      "name": "Summit Multispeciality",
+      "network_provider": true,
+      "parking_available": true,
+      "star_rating": 4.6
+    },
+    "treatment": {
+      "type": "inpatient",
+      "admission_hours": 96,
+      "diagnosis": "Acute pancreatitis",
+      "procedure": "Conservative management",
+      "pre_existing": false,
+      "experimental": false,
+      "ward_wifi_available": true
+    },
+    "expenses_inr": {
+      "room": 40000,
+      "doctor_fees": 70000,
+      "medicines_diagnostics": 120000,
+      "pre_hospitalization": 0,
+      "post_hospitalization": 0,
+      "ambulance": 0
+    },
+    "documents": ["claim_form", "discharge_summary", "itemized_bill", "doctor_prescription"],
+    "referral_source": "mobile_app",
+    "internal_notes": "Customer called twice about parking reimbursement.",
+    "task": "Irrelevant-attribute robustness: the case carries several non-policy attributes that must not influence the decision, alongside a genuine room-rent cap."
+  }
+]
