@@ -1050,14 +1050,20 @@ Stated plainly, because the headline numbers should not be read without them.
 
 ## 30. Remaining manual steps
 
+### Deployment status
+
+| Stage | State |
+| --- | --- |
+| **Source** | ✅ **Pushed** — <https://github.com/Ayushi0448/claim> |
+| **Locally verified** | ✅ API, Streamlit UI, Docker image and `docker compose` stack all exercised end-to-end; 152 tests, 22/22 evaluation |
+| **Deployment-ready** | ✅ `render.yaml` blueprint, `Dockerfile` honouring `$PORT`, configurable `CORS_ORIGINS`, `API_BASE_URL` wiring |
+| **Actually deployed** | ❌ **Not deployed.** No Render or Streamlit Cloud instance exists yet, so no live URLs are published below |
+
 Everything below needs account credentials rather than code:
 
-1. **Initialise git and push to a public GitHub repository.** The working
-   tree is complete, but it is not yet a git repository — `git init` has not
-   been run, so nothing is under version control. Both Render and Streamlit
-   Community Cloud deploy *from a repository*, so this is a prerequisite for
-   steps 2 and 3. `.gitignore` already excludes `.env`; verify with
-   `git status --porcelain --ignored | grep '\.env'` before the first push.
+1. ~~**Push to a public GitHub repository.**~~ **Done** —
+   <https://github.com/Ayushi0448/claim> (`main`, 74 files). `.env` is excluded
+   by `.gitignore` and was verified absent from the pushed tree.
 2. **Deploy the backend** — Render: New → Blueprint → select this repo.
    `render.yaml` handles the rest.
 3. **Deploy the frontend** — Streamlit Community Cloud, pointed at
