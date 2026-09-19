@@ -40,10 +40,29 @@ st.set_page_config(
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 PUBLIC_CASES = PROJECT_ROOT / "evaluation" / "public_cases" / "public_test_cases.json"
 CUSTOM_CASES_DIR = PROJECT_ROOT / "evaluation" / "custom_cases"
-API_BASE_URL = os.getenv("API_BASE_URL", "").rstrip("/")
+
+
+def _setting(name: str, default: str = "") -> str:
+    """Read config from Streamlit Cloud secrets, then the environment.
+
+    Streamlit Community Cloud supplies configuration through `st.secrets`,
+    while local runs and Docker use `.env` or the shell. Checking both keeps a
+    single code path across every deployment target. Accessing `st.secrets`
+    raises when no secrets file exists, which is the normal local case.
+    """
+    try:
+        if name in st.secrets:
+            return str(st.secrets[name])
+    except Exception:
+        pass
+    return os.getenv(name, default)
+
+
+API_BASE_URL = _setting("API_BASE_URL").rstrip("/")
 # A local LLM (e.g. ollama) is far slower than a hosted one and can exceed
-# the default budget, especially on a cold model load.
-ANALYZE_TIMEOUT_S = float(os.getenv("UI_ANALYZE_TIMEOUT_S", "120"))
+# the default budget, especially on a cold model load. Render's free tier also
+# sleeps when idle, so the first call after a pause pays a cold start.
+ANALYZE_TIMEOUT_S = float(_setting("UI_ANALYZE_TIMEOUT_S", "120"))
 
 DECISION_STYLE = {
     "ADMISSIBLE": ("#0f7b34", "✅", "Admissible"),
